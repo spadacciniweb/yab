@@ -6,7 +6,6 @@ use Config::Tiny;
 
 $| = 1;
 my $config = Config::Tiny->read( 'etc/main.conf' );
-use Data::Dumper;
 printf "Perl (increment)%s...\n",
        $config->{global}->{DEBUG} ? ' in DEBUG mode' : '';
 
@@ -16,13 +15,13 @@ my $t0 = time;
 
 while ($i < $final) {
     if ($i % $step == 0) {
-        printf("\rincrementing... %.1f%%", $i/$final*100);
+        printf("\rincrementing... %.1f%%", $i*100/$final);
     }
     $l_inc += length($i);
     $i++;
 }
 
-printf "\nincrement %d times,  total length %d\n",
+printf "\nincrement %d times, total length %d\n",
     $final, $l_inc;
 
 printf "time total: %.3f seconds\n", time - $t0;
