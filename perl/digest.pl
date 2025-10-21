@@ -16,7 +16,7 @@ my $s_digest_sha256 = sha256_hex $str;
 my $s_digest_sha384 = sha384_hex $str;
 my $s_digest_sha512 = sha512_hex $str;
 
-printf "Perl (Digest::MD5 Digest::SHA)%s...\n",
+printf "Perl (Digest::MD5 and Digest::SHA)%s...\n",
        $config->{global}->{DEBUG} ? ' in DEBUG mode' : '';
 
 my ($t0, $l_digest_md5) = (time, 0);
