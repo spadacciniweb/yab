@@ -10,14 +10,16 @@ if __name__ == "__main__":
     else:
         print("Python (increment)...")
 
-    t0, i, step, final = time.time(), 0, int(config['increment']['STEP']), int(config['increment']['FINAL'])
+    t0, l_inc, i = time.time(), 0, 0
+    step, final = int(config['increment']['STEP']), int(config['increment']['FINAL'])
 
     while i < final:
         if i % step == 0:
             print("\rincrementing... %.1f%%" %( i*100 / final ), end='' )
+        l_inc += len(str(i))
         i += 1
     if int(config['global']['DEBUG']):
         print()
 
-    print("increment %d times" %( final ) )
+    print("increment %d times, total length %d" %( final, l_inc ) )
     print("time total: %.3f seconds" %( time.time() - t0 ) )

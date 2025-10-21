@@ -10,17 +10,19 @@ use Data::Dumper;
 printf "Perl (increment)%s...\n",
        $config->{global}->{DEBUG} ? ' in DEBUG mode' : '';
 
-my ($i, $step, $final) = (0, $config->{increment}->{STEP}, $config->{increment}->{FINAL});
+my ($i, $l_inc) = (0, 0);
+my ($step, $final) = ($config->{increment}->{STEP}, $config->{increment}->{FINAL});
 my $t0 = time;
 
 while ($i < $final) {
     if ($i % $step == 0) {
         printf("\rincrementing... %.1f%%", $i/$final*100);
     }
+    $l_inc += length($i);
     $i++;
 }
 
-printf "\nincrement %d times\n",
-    $final;
+printf "\nincrement %d times,  total length %d\n",
+    $final, $l_inc;
 
 printf "time total: %.3f seconds\n", time - $t0;
