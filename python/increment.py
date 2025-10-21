@@ -16,8 +16,8 @@ if __name__ == "__main__":
         if i % step == 0:
             print("\rincrementing... %.1f%%" %( i*100 / final ), end='' )
         i += 1
-
-    print()
+    if int(config['global']['DEBUG']):
+        print()
 
     print("increment %d times" %( final ) )
     print("time total: %.3f seconds" %( time.time() - t0 ) )
