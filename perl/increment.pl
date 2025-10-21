@@ -6,22 +6,25 @@ use Config::Tiny;
 
 $| = 1;
 my $config = Config::Tiny->read( 'etc/main.conf' );
-printf "Perl (increment)%s...\n",
-       $config->{global}->{DEBUG} ? ' in DEBUG mode' : '';
+printf "Perl (increment)%s...%s\n",
+       $config->{global}->{DEBUG} ? ' in DEBUG mode' : '',
+       $config->{global}->{DEBUG} ? '' : ' please wait';
 
 my ($i, $l_inc) = (0, 0);
 my ($step, $final) = ($config->{increment}->{STEP}, $config->{increment}->{FINAL});
 my $t0 = time;
 
 while ($i < $final) {
-    if ($i % $step == 0) {
+    if ($config->{global}->{DEBUG} and ($i % $step == 0) ) {
         printf("\rincrementing... %.1f%%", $i*100/$final);
     }
     $l_inc += length($i);
     $i++;
 }
+print "\n"
+    if $config->{global}->{DEBUG};
 
-printf "\nincrement %d times, total length %d\n",
+printf "increment %d times, total length %d\n",
     $final, $l_inc;
 
 printf "time total: %.3f seconds\n", time - $t0;
