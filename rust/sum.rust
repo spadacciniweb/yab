@@ -1,0 +1,16 @@
+use std::io::{self, Write};
+
+fn main(){
+    let mut i = 0.0;
+    let finale = 1000000000.0;
+    let step = finale / 10.0;
+
+    while i < finale {
+        i = i + 1.0;
+        if (i % step) as i64 == 1 {
+            print!("\r{:.1}%", i/step*10.0);
+            let _ = io::stdout().flush();
+        }
+    }
+    println!("\n{}",i);
+}
