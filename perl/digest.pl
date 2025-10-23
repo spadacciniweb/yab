@@ -7,7 +7,7 @@ use Time::HiRes 'time';
 use Config::Tiny;
 
 $| = 1;
-my $config = Config::Tiny->read( 'etc/main.conf' );
+my $config = Config::Tiny->read( '../etc/main.conf' );
 
 my $str = 'a' x $config->{digest}->{STR_SIZE};
 my $s_digest_md5 =  md5_hex $str;

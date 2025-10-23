@@ -5,7 +5,7 @@ use Time::HiRes 'time';
 use Config::Tiny;
 
 $| = 1;
-my $config = Config::Tiny->read( 'etc/main.conf' );
+my $config = Config::Tiny->read( '../etc/main.conf' );
 printf "Perl (increment)%s...%s\n",
        $config->{global}->{DEBUG} ? ' in DEBUG mode' : '',
        $config->{global}->{DEBUG} ? '' : ' please wait';

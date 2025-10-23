@@ -3,7 +3,7 @@ import configparser
 import time
 
 config = configparser.ConfigParser()
-config.read('etc/main.conf')
+config.read('../etc/main.conf')
 debug = int(config['global']['DEBUG'])
 
 def hashMD5(s):

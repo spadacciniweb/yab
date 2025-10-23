@@ -6,7 +6,7 @@ use Time::HiRes 'time';
 use Config::Tiny;
 
 $| = 1;
-my $config = Config::Tiny->read( 'etc/main.conf' );
+my $config = Config::Tiny->read( '../etc/main.conf' );
 
 my $str = 'a' x $config->{base64}->{STR_SIZE};
 my $s_encoded =  encode_base64 $str;

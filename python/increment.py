@@ -2,7 +2,7 @@ import configparser
 import time
 
 config = configparser.ConfigParser()
-config.read('etc/main.conf')
+config.read('../etc/main.conf')
 debug = int(config['global']['DEBUG'])
 
 if __name__ == "__main__":
