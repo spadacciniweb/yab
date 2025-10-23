@@ -1,4 +1,4 @@
-all: clean build execution
+all: build execution clean
 
 build:
 	cargo build --release
