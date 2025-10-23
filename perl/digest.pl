@@ -16,8 +16,9 @@ my $s_digest_sha256 = sha256_hex $str;
 my $s_digest_sha384 = sha384_hex $str;
 my $s_digest_sha512 = sha512_hex $str;
 
-printf "Perl (Digest::MD5 and Digest::SHA)%s...\n",
-       $config->{global}->{DEBUG} ? ' in DEBUG mode' : '';
+printf "Perl (Digest::MD5 and Digest::SHA)%s...%s\n",
+       $config->{global}->{DEBUG} ? ' in DEBUG mode' : '',
+       $config->{global}->{DEBUG} ? '' : ' please wait';
 
 my ($t0, $l_digest_md5) = (time, 0);
 for (1 .. $config->{digest}->{TRIES}) {
@@ -26,7 +27,8 @@ for (1 .. $config->{digest}->{TRIES}) {
         if $config->{global}->{DEBUG};
 }
 my $t_digest_md5 = time - $t0;
-printf "\n";
+printf "\n"
+    if $config->{global}->{DEBUG};
 
 my ($t1, $l_digest_sha1) = (time, 0);
 for (1 .. $config->{digest}->{TRIES}) {
@@ -35,7 +37,8 @@ for (1 .. $config->{digest}->{TRIES}) {
         if $config->{global}->{DEBUG};
 }
 my $t_digest_sha1 = time - $t1;
-printf "\n";
+printf "\n"
+    if $config->{global}->{DEBUG};
 
 my ($t2, $l_digest_sha256) = (time, 0);
 for (1 .. $config->{digest}->{TRIES}) {
@@ -44,7 +47,8 @@ for (1 .. $config->{digest}->{TRIES}) {
         if $config->{global}->{DEBUG};
 }
 my $t_digest_sha256 = time - $t2;
-printf "\n";
+printf "\n"
+    if $config->{global}->{DEBUG};
 
 my ($t3, $l_digest_sha384) = (time, 0);
 for (1 .. $config->{digest}->{TRIES}) {
@@ -53,7 +57,8 @@ for (1 .. $config->{digest}->{TRIES}) {
         if $config->{global}->{DEBUG};
 }
 my $t_digest_sha384 = time - $t3;
-printf "\n";
+printf "\n"
+    if $config->{global}->{DEBUG};
 
 my ($t4, $l_digest_sha512) = (time, 0);
 for (1 .. $config->{digest}->{TRIES}) {
@@ -62,7 +67,8 @@ for (1 .. $config->{digest}->{TRIES}) {
         if $config->{global}->{DEBUG};
 }
 my $t_digest_sha512 = time - $t4;
-printf "\n";
+printf "\n"
+    if $config->{global}->{DEBUG};
 
 printf "md5 digest %s... to %s...: %d total length, %.2f seconds\n",
     substr($str, 0, 6), substr($s_digest_md5, 0, 6),

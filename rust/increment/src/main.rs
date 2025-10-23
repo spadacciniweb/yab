@@ -14,7 +14,7 @@ fn main() {
     if debug {
         println!("Rust (increment) in DEBUG mode...");
     } else {
-        println!("Rust (increment)...");
+        println!("Rust (increment)... please wait");
     }
 
     let mut i = 0.0;

@@ -12,8 +12,9 @@ my $str = 'a' x $config->{base64}->{STR_SIZE};
 my $s_encoded =  encode_base64 $str;
 my $s_decoded = decode_base64 $s_encoded;
 
-printf "Perl (MIME::Base64)%s...\n",
-       $config->{global}->{DEBUG} ? ' in DEBUG mode' : '';
+printf "Perl (MIME::Base64)%s...%s\n",
+       $config->{global}->{DEBUG} ? ' in DEBUG mode' : '',
+       $config->{global}->{DEBUG} ? '' : ' please wait';
 
 my ($t0, $l_encoded) = (time, 0);
 for (1 .. $config->{base64}->{TRIES}) {
@@ -22,7 +23,8 @@ for (1 .. $config->{base64}->{TRIES}) {
         if $config->{global}->{DEBUG};
 }
 my $t_encoded = time - $t0;
-printf "\n";
+printf "\n"
+    if $config->{global}->{DEBUG};
 
 my ($t1, $l_decoded) = (time, 0);
 for (1 .. $config->{base64}->{TRIES}) {
@@ -31,7 +33,8 @@ for (1 .. $config->{base64}->{TRIES}) {
         if $config->{global}->{DEBUG};
 }
 my $t_decoded = time - $t1;
-printf "\n";
+printf "\n"
+    if $config->{global}->{DEBUG};
 
 printf "encode %s... to %s...: %d total length, %.2f seconds\n",
     substr($str, 0, 6), substr($s_encoded, 0, 6),

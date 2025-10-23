@@ -15,11 +15,12 @@ func main(){
         fmt.Printf("Fail to read file: %v", err)
         os.Exit(1)
     }
+    var debug := cfg.Section("global").Key("DEBUG").MustBool()
 
     if cfg.Section("global").Key("DEBUG").MustBool() {
         fmt.Println("Go (increment) in DEBUG mode...")
     } else {
-        fmt.Println("Go (increment)...")
+        fmt.Println("Go (increment)... please wait")
     }
 
     var i int64 = 0
@@ -35,7 +36,7 @@ func main(){
         l_inc += len(strconv.FormatInt(int64(i), 10))
         i++
     }
-    if cfg.Section("global").Key("DEBUG").MustBool() {
+    if debug {
         fmt.Println()
     }
 

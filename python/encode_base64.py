@@ -4,6 +4,7 @@ import time
 
 config = configparser.ConfigParser()
 config.read('etc/main.conf')
+debug = int(config['global']['DEBUG'])
 
 def encodeString(s):
     s_bytes = s.encode('ascii')
@@ -20,27 +21,27 @@ if __name__ == "__main__":
     s_encoded = encodeString(s)
     s_decoded = decodeString(s_encoded)
 
-    if int(config['global']['DEBUG']):
-        print("Python (base64)%s..." % (' in DEBUG mode'))
+    if debug:
+        print("Python (base64) in DEBUG mode...")
     else:
-        print("Python (base64)...")
+        print("Python (base64)... please wait")
 
     t0, l_encoded = time.time(), 0
     for i in range( 1, int(config['base64']['TRIES'])+1 ):
         l_encoded += len(encodeString(s))
-        if int(config['global']['DEBUG']):
+        if debug:
             print("\rencoding... %.1f%%" %( i*100 / int(config['base64']['TRIES']) ), end='' )
     t_encoded = time.time() - t0
-    if int(config['global']['DEBUG']):
+    if debug:
         print()
 
     t1, l_decoded = time.time(), 0
     for i in range( 1, int(config['base64']['TRIES'])+1 ):
         l_decoded += len(decodeString(s_encoded))
-        if int(config['global']['DEBUG']):
+        if debug:
             print("\rdecoding... %.1f%%" %( i*100 / int(config['base64']['TRIES']) ), end='' )
     t_decoded = time.time() - t1
-    if int(config['global']['DEBUG']):
+    if debug:
         print()
 
     print("encode %s... to %s...: %d total length, %.2f seconds" %( s[:6], s_encoded[:6], l_encoded, t_encoded ) )
