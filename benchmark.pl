@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-use Data::Dumper;
 use File::Slurp;
 use List::Util qw/ uniq /;
+use Text::ASCIITable;
 
 my @log_files = glob("*/output_*.log");
 
@@ -27,19 +27,28 @@ foreach my $filepath (@log_files) {
     }
 }
 
-print Dumper(\%benchmark);
 my @scripts = keys %benchmark;
 
 my @languages = uniq
                 map { keys %{$benchmark{$_}} }
                   keys %benchmark;
-print Dumper(\@languages);
+
+
+my $t = Text::ASCIITable->new({ headingText => 'My benchmark' });
+$t->setCols( 'script\lang', map { ucfirst lc $_ } @languages );
+foreach my $script (@scripts) {
+    $t->addRow($script, map { $benchmark{$script}{$_} ? $benchmark{$script}{$_} : '-' } @languages );
+}
+$t->addRowLine();
+print $t;
+
+=head
+$t->addRow('','Total',57.9);
+=cut
 
 exit 0;
 
-=head
-sub uniq_langs {
-
-@dedup = grep !$seen{$_}++ @orig_array;
+sub getCols {
+    my $langs = shift;
+    return sprintf "'%s'", join "','", @$langs;
 }
-=cut
