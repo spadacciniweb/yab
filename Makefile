@@ -1,19 +1,24 @@
-all: run-all
+all: build-container run-container exec-benchmark
 
-run-all: perl-all python-all rust-all build-benchmark
+build-container:
+	@echo "Build container..."
+	podman build -f container/Containerfile -t mybenchmark .
 
-perl-all:
-	@echo "### Run Perl scripts..." && cd perl && make
+run-container:
+	@echo "\nRun container..."
+	podman run --name=mybench --hostname mybench --detach mybenchmark
 
-python-all:
-	@echo "\n### Run Python scripts..." && cd python && make
-
-rust-all:
-	@echo "\n### Run Rust scripts..." && cd rust && make
+exec-benchmark:
+	@echo "\nRun benchmark..."
+	podman exec -it mybench make
 
 clean:
-	rm -R */output_*.log
+	@echo "\nClean... please wait"
+	podman stop mybench
+	podman rm mybench
+	podman rmi mybenchmark
 
-build-benchmark:
-	@echo "\nBuild benchmark..."
-	@perl benchmark.pl
+clean-all:
+	podman ps -aq | xargs podman rm
+	podman images -q | xargs podman rmi
+	podman system prune
