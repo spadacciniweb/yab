@@ -5,4 +5,4 @@
 *.o
 
 */__pycache__
-/target/
+*/target/
