@@ -37,6 +37,12 @@ def hashSHA512(s):
     return m.hexdigest()
 
 if __name__ == "__main__":
+
+    if debug:
+        print("Python (md5, sha1, sha256, ...) in DEBUG mode...")
+    else:
+        print("Python (md5, sha, ...)... please wait")
+
     s = 'a' * int(config['digest']['STR_SIZE'])
     s_digest_md5 = hashMD5(s)
     s_digest_sha1 = hashSHA1(s)
@@ -44,58 +50,48 @@ if __name__ == "__main__":
     s_digest_sha384 = hashSHA384(s)
     s_digest_sha512 = hashSHA512(s)
 
-    if debug:
-        print("Python (md5, sha1, sha256, ...) in DEBUG mode...")
-    else:
-        print("Python (md5, sha, ...)... please wait")
-
-    t0, l_digest_md5 = time.time(), 0
+    t_md5, l_digest_md5 = time.time(), 0
     for i in range( 1, int(config['digest']['TRIES'])+1 ):
         l_digest_md5 += len(hashMD5(s))
         if debug:
             print("\rmd5 hashing... %.1f%%" %( i*100 / int(config['digest']['TRIES']) ), end='' )
-
-    t_digest_md5 = time.time() - t0
+    t_digest_md5 = time.time() - t_md5
     if debug:
         print()
 
-    t1, l_digest_sha1 = time.time(), 0
+    t_sha1, l_digest_sha1 = time.time(), 0
     for i in range( 1, int(config['digest']['TRIES'])+1 ):
         l_digest_sha1 += len(hashSHA1(s))
         if debug:
             print("\rsha1 hashing... %.1f%%" %( i*100 / int(config['digest']['TRIES']) ), end='' )
-
-    t_digest_sha1 = time.time() - t1
+    t_digest_sha1 = time.time() - t_sha1
     if debug:
         print()
 
-    t2, l_digest_sha256 = time.time(), 0
+    t_sha256, l_digest_sha256 = time.time(), 0
     for i in range( 1, int(config['digest']['TRIES'])+1 ):
         l_digest_sha256 += len(hashSHA256(s))
         if debug:
             print("\rsha256 hashing... %.1f%%" %( i*100 / int(config['digest']['TRIES']) ), end='' )
-
-    t_digest_sha256 = time.time() - t2
+    t_digest_sha256 = time.time() - t_sha256
     if debug:
         print()
 
-    t3, l_digest_sha384 = time.time(), 0
+    t_sha384, l_digest_sha384 = time.time(), 0
     for i in range( 1, int(config['digest']['TRIES'])+1 ):
         l_digest_sha384 += len(hashSHA384(s))
         if debug:
             print("\rsha384 hashing... %.1f%%" %( i*100 / int(config['digest']['TRIES']) ), end='' )
-
-    t_digest_sha384 = time.time() - t3
+    t_digest_sha384 = time.time() - t_sha384
     if debug:
         print()
 
-    t4, l_digest_sha512 = time.time(), 0
+    t_sha512, l_digest_sha512 = time.time(), 0
     for i in range( 1, int(config['digest']['TRIES'])+1 ):
         l_digest_sha512 += len(hashSHA512(s))
         if debug:
             print("\rsha512 hashing... %.1f%%" %( i*100 / int(config['digest']['TRIES']) ), end='' )
-
-    t_digest_sha512 = time.time() - t4
+    t_digest_sha512 = time.time() - t_sha512
     if debug:
         print()
 
