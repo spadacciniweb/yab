@@ -9,6 +9,10 @@ use Config::Tiny;
 $| = 1;
 my $config = Config::Tiny->read( '../etc/main.conf' );
 
+printf "Perl (Digest::MD5 and Digest::SHA)%s...%s\n",
+       $config->{global}->{DEBUG} ? ' in DEBUG mode' : '',
+       $config->{global}->{DEBUG} ? '' : ' please wait';
+
 my $str = 'a' x $config->{digest}->{STR_SIZE};
 my $s_digest_md5 =  md5_hex $str;
 my $s_digest_sha1 = sha1_hex $str;
@@ -16,57 +20,53 @@ my $s_digest_sha256 = sha256_hex $str;
 my $s_digest_sha384 = sha384_hex $str;
 my $s_digest_sha512 = sha512_hex $str;
 
-printf "Perl (Digest::MD5 and Digest::SHA)%s...%s\n",
-       $config->{global}->{DEBUG} ? ' in DEBUG mode' : '',
-       $config->{global}->{DEBUG} ? '' : ' please wait';
-
-my ($t0, $l_digest_md5) = (time, 0);
+my ($t_md5, $l_digest_md5) = (time, 0);
 for (1 .. $config->{digest}->{TRIES}) {
     $l_digest_md5 += length md5_hex $str;
     printf "\rmd5 hashing... %.1f%%", $_*100 / $config->{digest}->{TRIES}
         if $config->{global}->{DEBUG};
 }
-my $t_digest_md5 = time - $t0;
+my $t_digest_md5 = time - $t_md5;
 printf "\n"
     if $config->{global}->{DEBUG};
 
-my ($t1, $l_digest_sha1) = (time, 0);
+my ($t_sha1, $l_digest_sha1) = (time, 0);
 for (1 .. $config->{digest}->{TRIES}) {
     $l_digest_sha1 += length sha1_hex $str;
     printf "\rsha1 hashing... %.1f%%", $_*100 / $config->{digest}->{TRIES}
         if $config->{global}->{DEBUG};
 }
-my $t_digest_sha1 = time - $t1;
+my $t_digest_sha1 = time - $t_sha1;
 printf "\n"
     if $config->{global}->{DEBUG};
 
-my ($t2, $l_digest_sha256) = (time, 0);
+my ($t_sha256, $l_digest_sha256) = (time, 0);
 for (1 .. $config->{digest}->{TRIES}) {
     $l_digest_sha256 += length sha256_hex $str;
     printf "\rsha256 hashing... %.1f%%", $_*100 / $config->{digest}->{TRIES}
         if $config->{global}->{DEBUG};
 }
-my $t_digest_sha256 = time - $t2;
+my $t_digest_sha256 = time - $t_sha256;
 printf "\n"
     if $config->{global}->{DEBUG};
 
-my ($t3, $l_digest_sha384) = (time, 0);
+my ($t_sha384, $l_digest_sha384) = (time, 0);
 for (1 .. $config->{digest}->{TRIES}) {
     $l_digest_sha384 += length sha384_hex $str;
     printf "\rsha384 hashing... %.1f%%", $_*100 / $config->{digest}->{TRIES}
         if $config->{global}->{DEBUG};
 }
-my $t_digest_sha384 = time - $t3;
+my $t_digest_sha384 = time - $t_sha384;
 printf "\n"
     if $config->{global}->{DEBUG};
 
-my ($t4, $l_digest_sha512) = (time, 0);
+my ($t_sha512, $l_digest_sha512) = (time, 0);
 for (1 .. $config->{digest}->{TRIES}) {
     $l_digest_sha512 += length sha512_hex $str;
     printf "\rsha512 hashing... %.1f%%", $_*100 / $config->{digest}->{TRIES}
         if $config->{global}->{DEBUG};
 }
-my $t_digest_sha512 = time - $t4;
+my $t_digest_sha512 = time - $t_sha512;
 printf "\n"
     if $config->{global}->{DEBUG};
 
