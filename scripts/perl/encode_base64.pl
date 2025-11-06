@@ -7,34 +7,35 @@ use Config::Tiny;
 
 $| = 1;
 my $config = Config::Tiny->read( '../etc/main.conf' );
+my $DEBUG = $config->{global}->{DEBUG};
 
 my $str = 'a' x $config->{base64}->{STR_SIZE};
 my $s_encoded =  encode_base64 $str;
 my $s_decoded = decode_base64 $s_encoded;
 
 printf "Perl (MIME::Base64)%s...%s\n",
-       $config->{global}->{DEBUG} ? ' in DEBUG mode' : '',
-       $config->{global}->{DEBUG} ? '' : ' please wait';
+       $DEBUG ? ' in DEBUG mode' : '',
+       $DEBUG ? '' : ' please wait';
 
 my ($t0, $l_encoded) = (time, 0);
 for (1 .. $config->{base64}->{TRIES}) {
     $l_encoded += length encode_base64 $str;
     printf "\rencoding... %.1f%%", $_*100 / $config->{base64}->{TRIES}
-        if $config->{global}->{DEBUG};
+        if $DEBUG;
 }
 my $t_encoded = time - $t0;
 printf "\n"
-    if $config->{global}->{DEBUG};
+    if $DEBUG;
 
 my ($t1, $l_decoded) = (time, 0);
 for (1 .. $config->{base64}->{TRIES}) {
     $l_decoded += length decode_base64 $s_encoded;
     printf "\rdecoding... %.1f%%", $_*100 / $config->{base64}->{TRIES}
-        if $config->{global}->{DEBUG};
+        if $DEBUG;
 }
 my $t_decoded = time - $t1;
 printf "\n"
-    if $config->{global}->{DEBUG};
+    if $DEBUG;
 
 printf "encode %s... to %s...: %d total length, %.2f seconds\n",
     substr($str, 0, 6), substr($s_encoded, 0, 6),

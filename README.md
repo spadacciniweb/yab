@@ -5,7 +5,7 @@ This is  collection of equivalent code samples across different programming lang
 Despite its name, this project **is not** intended to benchmark performance between languages.  
 Instead, each problem includes solutions that are as **structurally** and **functionally similar** as possible across languages.  
 
-For some problems, a `.quick` variant is also included — offering a more idiomatic or optimized solution in the same language.
+For some problems, a `.quick` variant is also included — offering a more idiomatic or optimized solution in the same language. For these, the value in the benchmark has been added in the corresponding cell with `ss /` (with `ss` for seconds) so that overall a time window can be displayed.
 
 ## Requirements
 
