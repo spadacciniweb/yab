@@ -75,8 +75,13 @@ cd -
 
 ### clean via container
 
+Just tpye:
 ```bash
 make clean
+```
+
+If you prefer a deep clean, type:
+```bash
 make clean-all
 ```
 
