@@ -1,0 +1,9 @@
+[package]
+name = "encode_base64"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rust-ini = "0.21"
+base64 = "0.22.1"
+
