@@ -5,9 +5,12 @@ USER root
 RUN apt-get -y update && \
     apt-get -y upgrade && \
     echo -n "Africa/Lusaka" > /etc/timezone && \
-    apt-get -y install make libconfig-tiny-perl libfile-slurp-perl liblist-allutils-perl libtext-asciitable-perl python3 cargo cargo-1.85 && \
+    apt-get -y install make libconfig-tiny-perl libfile-slurp-perl liblist-allutils-perl libtext-asciitable-perl python3 cargo cargo-1.85 golang-go golang-gopkg-ini.v1-dev && \
     rm -rf /var/lib/apt/lists/* && \
-    echo "Container is ready to go!!"
+    mkdir /root/go && \
+    ln -s /usr/share/gocode/src /root/go/src && \
+    go env -w GO111MODULE=auto && \
+    echo "The image is ready, now container is ready to go!!"
 
 ADD scripts /opt/bench
 WORKDIR /opt/bench
