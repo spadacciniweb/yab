@@ -54,7 +54,7 @@ if __name__ == "__main__":
     for i in range( 1, int(config['digest']['TRIES'])+1 ):
         l_digest_md5 += len(hashMD5(s))
         if debug:
-            print("\rmd5 hashing... %.1f%%" %( i*100 / int(config['digest']['TRIES']) ), end='' )
+            print("\rmd5 hashing... %.1f%%" %( i*100 / int(config['digest']['TRIES']) ), end='', flush=True )
     t_digest_md5 = time.time() - t_md5
     if debug:
         print()
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     for i in range( 1, int(config['digest']['TRIES'])+1 ):
         l_digest_sha1 += len(hashSHA1(s))
         if debug:
-            print("\rsha1 hashing... %.1f%%" %( i*100 / int(config['digest']['TRIES']) ), end='' )
+            print("\rsha1 hashing... %.1f%%" %( i*100 / int(config['digest']['TRIES']) ), end='', flush=True )
     t_digest_sha1 = time.time() - t_sha1
     if debug:
         print()
@@ -72,7 +72,7 @@ if __name__ == "__main__":
     for i in range( 1, int(config['digest']['TRIES'])+1 ):
         l_digest_sha256 += len(hashSHA256(s))
         if debug:
-            print("\rsha256 hashing... %.1f%%" %( i*100 / int(config['digest']['TRIES']) ), end='' )
+            print("\rsha256 hashing... %.1f%%" %( i*100 / int(config['digest']['TRIES']) ), end='', flush=True )
     t_digest_sha256 = time.time() - t_sha256
     if debug:
         print()
@@ -81,7 +81,7 @@ if __name__ == "__main__":
     for i in range( 1, int(config['digest']['TRIES'])+1 ):
         l_digest_sha384 += len(hashSHA384(s))
         if debug:
-            print("\rsha384 hashing... %.1f%%" %( i*100 / int(config['digest']['TRIES']) ), end='' )
+            print("\rsha384 hashing... %.1f%%" %( i*100 / int(config['digest']['TRIES']) ), end='', flush=True )
     t_digest_sha384 = time.time() - t_sha384
     if debug:
         print()
@@ -90,7 +90,7 @@ if __name__ == "__main__":
     for i in range( 1, int(config['digest']['TRIES'])+1 ):
         l_digest_sha512 += len(hashSHA512(s))
         if debug:
-            print("\rsha512 hashing... %.1f%%" %( i*100 / int(config['digest']['TRIES']) ), end='' )
+            print("\rsha512 hashing... %.1f%%" %( i*100 / int(config['digest']['TRIES']) ), end='', flush=True )
     t_digest_sha512 = time.time() - t_sha512
     if debug:
         print()

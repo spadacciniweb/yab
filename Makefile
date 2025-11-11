@@ -1,6 +1,6 @@
-all: build-container run-container exec-benchmark
+all: build-image run-container exec-YABenchmark
 
-build-container:
+build-image:
 	@echo "Build container..."
 	podman build -f container/Containerfile -t mybenchmark .
 
@@ -8,8 +8,8 @@ run-container:
 	@echo "\nRun container..."
 	podman run --name=mybench --hostname mybench --detach mybenchmark
 
-exec-benchmark:
-	@echo "\nRun benchmark..."
+exec-YABenchmark:
+	@echo "\nRun YABenchmark..."
 	podman exec -it mybench make
 
 clean:

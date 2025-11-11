@@ -16,7 +16,7 @@ if __name__ == "__main__":
 
     while i < final:
         if debug and i % step == 0:
-            print("\rincrementing... %.1f%%" %( i*100 / final ), end='' )
+            print("\rincrementing... %.1f%%" %( i*100 / final ), end='', flush=True )
         l_inc += len(str(i))
         i += 1
     if debug:
