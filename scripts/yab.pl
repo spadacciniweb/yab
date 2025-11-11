@@ -52,7 +52,7 @@ foreach my $script (@scripts) {
     }
 }
 
-my $t = Text::ASCIITable->new({ headingText => 'My benchmark' });
+my $t = Text::ASCIITable->new({ headingText => 'YABenchmark' });
 $t->setCols( 'script\lang', map { ucfirst lc $_ } @languages );
 foreach my $script (@scripts) {
     $t->addRow($script, map { $global_benchmark{$script}{$_} } @languages );

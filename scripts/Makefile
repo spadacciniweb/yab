@@ -16,4 +16,4 @@ clean:
 
 build-benchmark:
 	@echo "\nBuild benchmark..."
-	@perl benchmark.pl
+	@perl yab.pl
