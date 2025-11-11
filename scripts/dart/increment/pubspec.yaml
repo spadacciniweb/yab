@@ -1,9 +1,0 @@
-name: increment
-description: increment benchmark
-version: 1.0.0
-
-environment:
-  sdk: '>=3.0.0'
-dependencies:
-  ini: ^2.1.0
-
