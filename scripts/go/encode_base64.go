@@ -16,7 +16,7 @@ func main(){
         os.Exit(1)
     }
     var debug = cfg.Section("global").Key("DEBUG").MustBool()
-    var str_size float64 = cfg.Section("base64").Key("STR_SIZE").MustFloat64()
+    var str_size int = cfg.Section("base64").Key("STR_SIZE").MustInt()
     var tries float64 = cfg.Section("base64").Key("TRIES").MustFloat64()
 
     if cfg.Section("global").Key("DEBUG").MustBool() {
@@ -27,7 +27,7 @@ func main(){
 
     t_encode := time.Now()
 
-    s := strings.Repeat("a", int(str_size))
+    s := strings.Repeat("a", str_size)
     s_encoded := b64.StdEncoding.EncodeToString([]byte(s))
     s_decoded, _ := b64.StdEncoding.DecodeString(s_encoded)
  
