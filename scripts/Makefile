@@ -6,17 +6,17 @@ perl-all:
 	@echo "### Run Perl scripts..." && cd perl && make
 
 python-all:
-	@echo "\n### Run Python scripts..." && cd python && make
+	@echo "\n\n### Run Python scripts..." && cd python && make
 
 go-all:
-	@echo "### Run Go scripts..." && cd go && make
+	@echo "\n\n### Run Go scripts..." && cd go && make
 
 rust-all:
-	@echo "\n### Run Rust scripts..." && cd rust && make
+	@echo "\n\n### Run Rust scripts..." && cd rust && make
 
 clean:
 	rm -R */output_*.log
 
 build-YABenchmark:
-	@echo "\nBuild YABenchmark..."
+	@echo "\n\nBuild YABenchmark..."
 	@perl yab.pl
