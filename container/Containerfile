@@ -4,7 +4,7 @@ USER root
 
 RUN apt-get -y update && \
     apt-get -y upgrade && \
-    echo -n "Africa/Lusaka" > /etc/timezone && \
+    echo -n "Europe/Rome" > /etc/timezone && \
     apt-get -y install make libconfig-tiny-perl libfile-slurp-perl liblist-allutils-perl libtext-asciitable-perl python3 cargo cargo-1.85 golang-go golang-gopkg-ini.v1-dev && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir /root/go && \
