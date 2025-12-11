@@ -17,9 +17,7 @@ my ($step, $final) = ($config->{increment}->{STEP}, $config->{increment}->{FINAL
 my $t0 = time;
 
 while ($i < $final) {
-    if ($DEBUG and ($i % $step == 0) ) {
-        printf("\rincrementing... %.1f%%", $i*100/$final);
-    }
+    $DEBUG and ($i % $step == 0) and printf("\rincrementing... %.1f%%", $i*100/$final);
     $l_inc += length($i);
     $i++;
 }
