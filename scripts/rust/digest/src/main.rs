@@ -30,7 +30,7 @@ fn main() {
     let mut l_digest_md5 = 0;
     let mut i = 0.0;
     while i < tries {
-        l_digest_md5 = l_digest_md5 + md5::compute(s.clone()).len();
+        l_digest_md5 = l_digest_md5 + format!( "{:x}", md5::compute(s.clone()) ).chars().count();
         if debug {
             print!("\rmd5 hashing... {:.1}%", i * 100.0 / tries );
             let _ = io::stdout().flush();
@@ -46,7 +46,7 @@ fn main() {
     let mut l_digest_sha1 = 0;
     i = 0.0;
     while i < tries {
-        l_digest_sha1 = l_digest_sha1 + Sha1::digest(s.clone()).len();
+        l_digest_sha1 = l_digest_sha1 + format!( "{:x}", Sha1::digest(s.clone()) ).chars().count();
         if debug {
             print!("\rsha1 hashing... {:.1}%", i * 100.0 / tries );
             let _ = io::stdout().flush();
@@ -62,7 +62,7 @@ fn main() {
     let mut l_digest_sha256 = 0;
     i = 0.0;
     while i < tries {
-        l_digest_sha256 = l_digest_sha256 + Sha256::digest(s.clone()).len();
+        l_digest_sha256 = l_digest_sha256 + format!( "{:x}", Sha256::digest(s.clone()) ).chars().count();
         if debug {
             print!("\rsha256 hashing... {:.1}%", i * 100.0 / tries );
             let _ = io::stdout().flush();
@@ -78,7 +78,7 @@ fn main() {
     let mut l_digest_sha384 = 0;
     i = 0.0;
     while i < tries {
-        l_digest_sha384 = l_digest_sha384 + Sha384::digest(s.clone()).len();
+        l_digest_sha384 = l_digest_sha384 + format!( "{:x}", Sha384::digest(s.clone()) ).chars().count();
         if debug {
             print!("\rsha384 hashing... {:.1}%", i * 100.0 / tries );
             let _ = io::stdout().flush();
@@ -94,7 +94,7 @@ fn main() {
     let mut l_digest_sha512 = 0;
     i = 0.0;
     while i < tries {
-        l_digest_sha512 = l_digest_sha512 + Sha512::digest(s.clone()).len();
+        l_digest_sha512 = l_digest_sha512 + format!( "{:x}", Sha512::digest(s.clone()) ).chars().count();
         if debug {
             print!("\rsha512 hashing... {:.1}%", i * 100.0 / tries );
             let _ = io::stdout().flush();
