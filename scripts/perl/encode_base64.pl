@@ -23,8 +23,7 @@ for (1 .. $config->{base64}->{TRIES}) {
     $DEBUG and printf "\rencoding... %.1f%%", $_*100 / $config->{base64}->{TRIES};
 }
 my $t_encoded = time - $t0;
-printf "\n"
-    if $DEBUG;
+$DEBUG and printf "\n";
 
 my ($t1, $l_decoded) = (time, 0);
 for (1 .. $config->{base64}->{TRIES}) {
@@ -32,8 +31,7 @@ for (1 .. $config->{base64}->{TRIES}) {
     $DEBUG and printf "\rdecoding... %.1f%%", $_*100 / $config->{base64}->{TRIES};
 }
 my $t_decoded = time - $t1;
-printf "\n"
-    if $DEBUG;
+$DEBUG and printf "\n";
 
 printf "encode %s... to %s...: %d total length, %.2f seconds\n",
     substr($str, 0, 6), substr($s_encoded, 0, 6),

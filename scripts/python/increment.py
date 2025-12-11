@@ -15,12 +15,10 @@ if __name__ == "__main__":
     step, final = int(config['increment']['STEP']), int(config['increment']['FINAL'])
 
     while i < final:
-        if debug and i % step == 0:
-            print("\rincrementing... %.1f%%" %( i*100 / final ), end='', flush=True )
+        debug and i % step == 0 and print("\rincrementing... %.1f%%" %( i*100 / final ), end='', flush=True )
         l_inc += len(str(i))
         i += 1
-    if debug:
-        print()
+    debug and print()
 
     print("increment %d times, total length %d" %( final, l_inc ) )
     print("time total: %.3f seconds" %( time.time() - t0 ) )

@@ -29,20 +29,16 @@ if __name__ == "__main__":
     t0, l_encoded = time.time(), 0
     for i in range( 1, int(config['base64']['TRIES'])+1 ):
         l_encoded += len(encodeString(s))
-        if debug:
-            print("\rencoding... %.1f%%" %( i*100 / int(config['base64']['TRIES']) ), end='', flush=True )
+        debug and print("\rencoding... %.1f%%" %( i*100 / int(config['base64']['TRIES']) ), end='', flush=True )
     t_encoded = time.time() - t0
-    if debug:
-        print()
+    debug and print()
 
     t1, l_decoded = time.time(), 0
     for i in range( 1, int(config['base64']['TRIES'])+1 ):
         l_decoded += len(decodeString(s_encoded))
-        if debug:
-            print("\rdecoding... %.1f%%" %( i*100 / int(config['base64']['TRIES']) ), end='', flush=True )
+        debug and print("\rdecoding... %.1f%%" %( i*100 / int(config['base64']['TRIES']) ), end='', flush=True )
     t_decoded = time.time() - t1
-    if debug:
-        print()
+    debug and print()
 
     print("encode %s... to %s...: %d total length, %.2f seconds" %( s[:6], s_encoded[:6], l_encoded, t_encoded ) )
     print("decode %s... to %s...: %d total length, %.2f seconds" %( s_encoded[:6], s_decoded[:6], l_decoded, t_decoded ) )

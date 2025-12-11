@@ -27,8 +27,7 @@ for (1 .. $config->{digest}->{TRIES}) {
     $DEBUG and printf "\rmd5 hashing... %.1f%%", $_*100 / $config->{digest}->{TRIES}
 }
 my $t_digest_md5 = time - $t_md5;
-printf "\n"
-    if $DEBUG;
+$DEBUG and printf "\n";
 
 my ($t_sha1, $l_digest_sha1) = (time, 0);
 for (1 .. $config->{digest}->{TRIES}) {
@@ -36,8 +35,7 @@ for (1 .. $config->{digest}->{TRIES}) {
     $DEBUG and printf "\rsha1 hashing... %.1f%%", $_*100 / $config->{digest}->{TRIES}
 }
 my $t_digest_sha1 = time - $t_sha1;
-printf "\n"
-    if $DEBUG;
+$DEBUG and printf "\n";
 
 my ($t_sha256, $l_digest_sha256) = (time, 0);
 for (1 .. $config->{digest}->{TRIES}) {
@@ -45,8 +43,7 @@ for (1 .. $config->{digest}->{TRIES}) {
     $DEBUG and printf "\rsha256 hashing... %.1f%%", $_*100 / $config->{digest}->{TRIES}
 }
 my $t_digest_sha256 = time - $t_sha256;
-printf "\n"
-    if $DEBUG;
+$DEBUG and printf "\n";
 
 my ($t_sha384, $l_digest_sha384) = (time, 0);
 for (1 .. $config->{digest}->{TRIES}) {
@@ -54,8 +51,7 @@ for (1 .. $config->{digest}->{TRIES}) {
     $DEBUG and printf "\rsha384 hashing... %.1f%%", $_*100 / $config->{digest}->{TRIES}
 }
 my $t_digest_sha384 = time - $t_sha384;
-printf "\n"
-    if $DEBUG;
+$DEBUG and printf "\n";
 
 my ($t_sha512, $l_digest_sha512) = (time, 0);
 for (1 .. $config->{digest}->{TRIES}) {
@@ -63,8 +59,7 @@ for (1 .. $config->{digest}->{TRIES}) {
     $DEBUG and printf "\rsha512 hashing... %.1f%%", $_*100 / $config->{digest}->{TRIES}
 }
 my $t_digest_sha512 = time - $t_sha512;
-printf "\n"
-    if $DEBUG;
+$DEBUG and printf "\n";
 
 printf "md5 digest %s... to %s...: %d total length, %.2f seconds\n",
     substr($str, 0, 6), substr($s_digest_md5, 0, 6),

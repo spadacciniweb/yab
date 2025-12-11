@@ -21,8 +21,7 @@ while ($i < $final) {
     $l_inc += length($i);
     $i++;
 }
-print "\n"
-    if $DEBUG;
+$DEBUG and print "\n";
 
 printf "increment %d times, total length %d\n",
     $final, $l_inc;
