@@ -4,12 +4,21 @@ import (
     "os"
     "fmt"
     "math"
-    "strconv"
     "time"
     "gopkg.in/ini.v1"
 )
 
-func main(){
+func int_len(x int64) int {
+    len := 1
+
+    for x >= 10 {
+        x /= 10
+        len++
+    }
+    return len
+}
+
+func main() {
     cfg, err := ini.Load("../etc/main.conf")
     if err != nil {
         fmt.Printf("Fail to read file: %v", err)
@@ -33,7 +42,7 @@ func main(){
         if (debug && int( math.Mod( float64(i), float64(step) ) ) == 1) {
             fmt.Printf("\rincrementing... %.1f%%", float64(i*100) / float64(final) )
         }
-        l_inc += len(strconv.FormatInt(int64(i), 10))
+        l_inc += int_len(i)
         i++
     }
     if debug {
