@@ -2,6 +2,16 @@
 #include <time.h>
 #include "config.h"
 
+static inline int int_len(long x) {
+    int len = 1;
+
+    while (x >= 10) {
+        x /= 10;
+        len++;
+    }
+    return len;
+}
+
 int main(void) {
     Config cfg = {};
 
@@ -26,8 +36,7 @@ int main(void) {
             fflush(stdout);
         }
 
-        char buf[32];
-        l_inc += snprintf(buf, sizeof(buf), "%ld", i);
+        l_inc += int_len(i);
         i++;
     }
 
