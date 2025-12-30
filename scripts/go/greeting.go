@@ -21,10 +21,10 @@ func main(){
         fmt.Println("Go (greeting)... please wait")
     }
 
-    var i int64 = 0
+    var i int = 0
     var l_greeting int = 0
     var greeting string = cfg.Section("greeting").Key("GREETING").MustString("Hello world!!")
-    var final int64 = cfg.Section("greeting").Key("FINAL").MustInt64(99999999)
+    var final int = cfg.Section("greeting").Key("FINAL").MustInt()
     t0 := time.Now()
 
     for i < final {
