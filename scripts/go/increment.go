@@ -3,12 +3,11 @@ package main
 import (
     "os"
     "fmt"
-    "math"
     "time"
     "gopkg.in/ini.v1"
 )
 
-func int_len(x int64) int {
+func int_len(x int) int {
     len := 1
 
     for x >= 10 {
@@ -32,14 +31,14 @@ func main() {
         fmt.Println("Go (increment)... please wait")
     }
 
-    var i int64 = 0
+    var i int = 0
     var l_inc int = 0
-    var step int64 = cfg.Section("increment").Key("STEP").MustInt64(9999999)
-    var final int64 = cfg.Section("increment").Key("FINAL").MustInt64(99999999999999999)
+    var step int = cfg.Section("increment").Key("STEP").MustInt()
+    var final int = cfg.Section("increment").Key("FINAL").MustInt()
     t0 := time.Now()
 
     for i < final {
-        if (debug && int( math.Mod( float64(i), float64(step) ) ) == 1) {
+        if debug && i % step == 0 {
             fmt.Printf("\rincrementing... %.1f%%", float64(i*100) / float64(final) )
         }
         l_inc += int_len(i)
