@@ -20,7 +20,7 @@ If you plan to use a containerized environment, you only need **Podman** (or **D
 ```bash
 sudo apt-get update
 sudo apt-get install podman
-make check
+make
 ```
 
 ### running on your machine
@@ -75,7 +75,7 @@ cd -
 
 ### clean via container
 
-Just tpye:
+Just type:
 ```bash
 make clean
 ```
